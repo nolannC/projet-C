@@ -6,6 +6,7 @@
 
 // Initialisation des fonctions
 int show_film(string arr[3][3], int index);
+string toLower(string str);
 
 int main(void)
 {
@@ -61,14 +62,24 @@ int main(void)
     if (age >= 18)
     {
         // on commence par les films pour adultes puis ados et enfin enfants
-        for (int cat = 2; cat >= 0; cat--)
+       int result = show_film(films, 2);
+        if (result == 0)
         {
-            int result = show_film(films, cat);
-            if (result == 0)
-            {
-                return 0;
-            }
+            return 0;
         }
+        string next = get_string("Quelle autre catégorie pourrais vous plaire ? (Enfant/Ado) ");
+        next = toLower(next);
+        if (strcmp(next, "enfant") == 0) {
+            result = show_film(films, 0);
+        }
+        if (strcmp(next, "ado") == 0) {
+            result = show_film(films, 1);
+        }
+        if (result == 0)
+        {
+            return 0;
+        }
+
         printf("Vous êtes compliqués !\n");
     }
 
@@ -79,7 +90,7 @@ int show_film(string arr[3][3], int index)
     /*
         Fonction qui affiche les films par catégorie (grâce â l'index)
     */
-    // affichage des films pour enfant
+    // affichage des films
     for (int i = 0; i < 3; i++)
     {
         // affichage du premier film
@@ -87,10 +98,7 @@ int show_film(string arr[3][3], int index)
         // demande si l'utilisateur veux garder ce film
         string voir = get_string("Voulez vous voir ce film ? (Oui/Non) ");
         //chaque caractere entrer par l'utilisateur est mis en minuscule pour sécurisé l'input
-        for (int j = 0, n = strlen(voir); j < n; j++)
-        {
-            voir[j] = tolower(voir[j]);
-        }
+        voir = toLower(voir);
         // si la réponse est oui on affiche le choix sinon un reboucle au début
         if (strcmp(voir, "oui") == 0)
         {
@@ -100,4 +108,16 @@ int show_film(string arr[3][3], int index)
         }
     }
     return 1;
+}
+
+string toLower(string str)
+{
+    /*
+        Fonction qui renvoie la chaine de caractères str en minuscule
+    */
+    for (int i = 0, n = strlen(str); i < n; i++)
+        {
+            str[i] = tolower(str[i]);
+        }
+    return str;
 }
