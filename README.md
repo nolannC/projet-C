@@ -1,5 +1,5 @@
 # Projet-C
-## First Porject in C
+## First Project in C
 ### Display of movies according to the age of the user
 
 #
