@@ -17,9 +17,9 @@ int main(void)
     // listes des films
     string films[3][3] =
     {
-            {"Harry Potter à l'école des sorciers", "Harry Potter et la chambre des secrets", "Harry Potter et le prisonnier d'Askaban"},
-            {"Harry Potter et la coupe de feu", "Harry Potter et l'ordre du Phénix", "Harry Potter et le prince de sang-mêlé"},
-            {"Harry Potter et les reliques de la mort - partie 1", "Harry Potter et les reliques de la mort - partie 2", "Matrix 1"}
+        {"Harry Potter à l'école des sorciers", "Harry Potter et la chambre des secrets", "Harry Potter et le prisonnier d'Askaban"},
+        {"Harry Potter et la coupe de feu", "Harry Potter et l'ordre du Phénix", "Harry Potter et le prince de sang-mêlé"},
+        {"Harry Potter et les reliques de la mort - partie 1", "Harry Potter et les reliques de la mort - partie 2", "Matrix 1"}
     };
 
     // demande de l'age
@@ -62,17 +62,19 @@ int main(void)
     if (age >= 18)
     {
         // on commence par les films pour adultes puis ados et enfin enfants
-       int result = show_film(films, 2);
+        int result = show_film(films, 2);
         if (result == 0)
         {
             return 0;
         }
         string next = get_string("Quelle autre catégorie pourrais vous plaire ? (Enfant/Ado) ");
         next = toLower(next);
-        if (strcmp(next, "enfant") == 0) {
+        if (strcmp(next, "enfant") == 0)
+        {
             result = show_film(films, 0);
         }
-        if (strcmp(next, "ado") == 0) {
+        if (strcmp(next, "ado") == 0)
+        {
             result = show_film(films, 1);
         }
         if (result == 0)
@@ -112,12 +114,9 @@ int show_film(string arr[3][3], int index)
 
 string toLower(string str)
 {
-    /*
-        Fonction qui renvoie la chaine de caractères str en minuscule
-    */
     for (int i = 0, n = strlen(str); i < n; i++)
-        {
-            str[i] = tolower(str[i]);
-        }
+    {
+        str[i] = tolower(str[i]);
+    }
     return str;
 }
